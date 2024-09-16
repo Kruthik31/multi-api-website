@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Anime Gallery</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/anime">Anime</a>
+      <a href="/books">Books</a>
+      <a href="/photos">Photography</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Anime Gallery</h1>
+    <div class="anime-grid">
+      <% animes.forEach(anime => { %>
+        <div class="anime-item">
+          <img src="<%= anime.images.jpg.large_image_url %>" alt="<%= anime.title %>" class="anime-image">
+          <h2><%= anime.title %></h2>
+          <p><%= anime.synopsis %></p>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+
+  <footer>
+    <%- include('footer') %>
+  </footer>
+</body>
+
+</html>

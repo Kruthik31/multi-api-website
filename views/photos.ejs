@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Photography</title>
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      margin: 15% auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/anime">Anime</a>
+      <a href="/books">Books</a>
+      <a href="/photos">Photography</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Beautiful Photography</h1>
+  
+    <div class="photo-grid">
+      <% photos.forEach(photo => { %>
+        <div class="photo-item">
+          <img src="<%= photo.urls.regular %>" alt="<%= photo.alt_description %>" class="photo-image" onclick="openModal('<%= photo.urls.full %>')">
+          <p>Photo by <a href="<%= photo.user.links.html %>" target="_blank"><%= photo.user.name %></a></p>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+ 
+  <div id="photoModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <footer>
+    <%- include('footer') %>
+  </footer>
+
+  <script>
+    function openModal(imageUrl) {
+      document.getElementById('photoModal').style.display = 'block';
+      document.getElementById('modalImage').src = imageUrl;
+    }
+
+    function closeModal() {
+      document.getElementById('photoModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
